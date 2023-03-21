@@ -67,7 +67,7 @@ class MaterialModel(ABC):
         return - inner(v,h)*ds
     
     def penaltyWeakBCResidual(self,u,v,g,beta,ds=ds):
-        return - inner(beta*(u-g),v)*ds
+        return inner(beta*(u-g),v)*ds
 
     def getBasicTensors(self,u):
         if not u.ufl_shape:
@@ -124,13 +124,9 @@ class JacobianStiffening(MaterialModel):
     stiffening.
     """
 
-    def interiorResidual(self,u,v,J_M,dx=dx):
+    def interiorResidual(self,u,v,dx=dx):
         I,F,J,_,E = self.getBasicTensors(u)
-        fictitious_E = Constant(1.0)
-        fictitious_nu = Constant(0.3)
-        K = bulkModulus(fictitious_E/pow((J_M),self.props['power_J_M']),fictitious_nu)
-        mu = shearModulus(fictitious_E/pow((J_M),self.props['power_J_M']),fictitious_nu)
-        # K = K/pow(J,self.props['power_J'])
-        # mu = mu/pow(J,self.props['power_J'])
+        K = Constant(1)/pow(J,self.props['power'])
+        mu = Constant(1)/pow(J,self.props['power'])
         S = K*tr(E)*I + 2.0*mu*(E - tr(E)*I/3.0)
         return inner(F*S,grad(v))*dx
