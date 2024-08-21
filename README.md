@@ -3,7 +3,7 @@ The **Var**iational **M**ultiscale **I**ncompressible **N**avier--Stokes **T**oo
 
 The **S**olid **M**echanics **A**nd **N**onlinear **E**lasticity **R**outines module, **SalaMANdER**, provides a framework for implementing solid material models that avoids code duplication where possible.
 
-The **C**onvert **M**esh utility, **ChaMeleon**, was written to convert meshes generated with [GMSH](gmsh.info) to FEniCS-compatible XDMF-format meshes using [meshio](https://pypi.org/project/meshio/).
+The **C**onvert **M**esh utility, **ChaMeleon**, was written to convert meshes generated with [GMSH](https://gmsh.info/) to FEniCS-compatible XDMF-format meshes using [meshio](https://pypi.org/project/meshio/).
 
 To install these modules, do the following: 
 ```
