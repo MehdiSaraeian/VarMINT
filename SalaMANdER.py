@@ -66,7 +66,7 @@ class MaterialModel(ABC):
     def tractionBCResidual(self,h,v,ds=ds):
         return - inner(v,h)*ds
     
-    def penaltyWeakBCResidual(self,u,v,g,beta,ds=ds):
+    def penaltyDirichletBCResidual(self,u,v,g,beta,ds=ds):
         return inner(beta*(u-g),v)*ds
 
     def getBasicTensors(self,u):
